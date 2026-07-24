@@ -10,7 +10,8 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Create ThirdPartyKeys.plist
         run: cp ThirdPartyKeys.example.plist ThirdPartyKeys.plist
@@ -23,9 +24,19 @@ jobs:
 
       - name: Build
         run: |
+          set -eo pipefail
+
           xcodebuild \
             -workspace swift-ui-base.xcworkspace \
             -scheme swift-ui-base \
-            -sdk iphonesimulator \
             -configuration Debug \
-            build
+            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            clean build
+
+      - name: Upload DerivedData
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: DerivedData
+          path: ~/Library/Developer/Xcode/DerivedData
+          if-no-files-found: warn
