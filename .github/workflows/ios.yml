@@ -22,21 +22,40 @@ jobs:
       - name: Install Pods
         run: pod install
 
-      - name: Build
+      - name: Archive
         run: |
           set -eo pipefail
 
           xcodebuild \
             -workspace swift-ui-base.xcworkspace \
             -scheme swift-ui-base \
-            -sdk iphonesimulator \
-            -configuration Debug \
-            clean build
+            -configuration Release \
+            -destination "generic/platform=iOS" \
+            -archivePath build/swift-ui-base.xcarchive \
+            archive \
+            CODE_SIGNING_ALLOWED=NO
 
-      - name: Upload DerivedData
+      - name: Create IPA
+        run: |
+          set -eo pipefail
+
+          mkdir -p Payload
+
+          cp -R \
+            build/swift-ui-base.xcarchive/Products/Applications/swift-ui-base.app \
+            Payload/
+
+          /usr/bin/zip -qry swift-ui-base.ipa Payload
+
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: swift-ui-base-ipa
+          path: swift-ui-base.ipa
+
+      - name: Upload Archive
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: DerivedData
-          path: ~/Library/Developer/Xcode/DerivedData
-          if-no-files-found: warn
+          name: xcarchive
+          path: build/swift-ui-base.xcarchive
