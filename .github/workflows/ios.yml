@@ -12,6 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Create ThirdPartyKeys.plist
+        run: cp ThirdPartyKeys.example.plist ThirdPartyKeys.plist
+
       - name: Install CocoaPods
         run: sudo gem install cocoapods
 
