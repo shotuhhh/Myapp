@@ -1,0 +1,42 @@
+name: iOS Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create ThirdPartyKeys.plist
+        run: cp ThirdPartyKeys.example.plist ThirdPartyKeys.plist
+
+      - name: Install CocoaPods
+        run: sudo gem install cocoapods
+
+      - name: Install Pods
+        run: pod install
+
+      - name: Build
+        run: |
+          set -eo pipefail
+
+          xcodebuild \
+            -workspace swift-ui-base.xcworkspace \
+            -scheme swift-ui-base \
+            -sdk iphonesimulator \
+            -configuration Debug \
+            clean build
+
+      - name: Upload DerivedData
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: DerivedData
+          path: ~/Library/Developer/Xcode/DerivedData
+          if-no-files-found: warn

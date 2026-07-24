@@ -10,52 +10,42 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Create ThirdPartyKeys.plist
-        run: cp ThirdPartyKeys.example.plist ThirdPartyKeys.plist
+      - run: cp ThirdPartyKeys.example.plist ThirdPartyKeys.plist
 
-      - name: Install CocoaPods
-        run: sudo gem install cocoapods
+      - run: sudo gem install cocoapods
 
-      - name: Install Pods
-        run: pod install
+      - run: pod install
 
       - name: Archive
         run: |
           set -eo pipefail
-
           xcodebuild \
             -workspace swift-ui-base.xcworkspace \
             -scheme swift-ui-base \
             -configuration Release \
             -destination "generic/platform=iOS" \
             -archivePath build/swift-ui-base.xcarchive \
-            archive \
-            CODE_SIGNING_ALLOWED=NO
+            archive
 
-      - name: Create IPA
+      - name: Export IPA
         run: |
           set -eo pipefail
+          xcodebuild \
+            -exportArchive \
+            -archivePath build/swift-ui-base.xcarchive \
+            -exportOptionsPlist ExportOptions.plist \
+            -exportPath build/export
 
-          mkdir -p Payload
-
-          cp -R \
-            build/swift-ui-base.xcarchive/Products/Applications/swift-ui-base.app \
-            Payload/
-
-          /usr/bin/zip -qry swift-ui-base.ipa Payload
-
-      - name: Upload IPA
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: swift-ui-base-ipa
-          path: swift-ui-base.ipa
+          path: build/export
 
-      - name: Upload Archive
+      - uses: actions/upload-artifact@v4
         if: always()
-        uses: actions/upload-artifact@v4
         with:
           name: xcarchive
           path: build/swift-ui-base.xcarchive
