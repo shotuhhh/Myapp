@@ -1,0 +1,28 @@
+name: iOS Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install CocoaPods
+        run: sudo gem install cocoapods
+
+      - name: Install Pods
+        run: pod install
+
+      - name: Build
+        run: |
+          xcodebuild \
+            -workspace swift-ui-base.xcworkspace \
+            -scheme swift-ui-base \
+            -sdk iphonesimulator \
+            -configuration Debug \
+            build
