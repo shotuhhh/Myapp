@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct LifeUser: Identifiable, Hashable {
     let id: String
