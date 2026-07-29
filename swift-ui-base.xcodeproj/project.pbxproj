@@ -99,6 +99,17 @@
 		8E02F1EB0951495FBE583CEE /* MockDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9563A75EA2C24801A42B7CFF /* MockDataStore.swift */; };
 		A3DA7581C0E44EBA94205D3E /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17C7EAA44416496E8A605 /* HapticFeedback.swift */; };
 		EC66549006324B78AD525ECA /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7331F9E0C6C4D1CBE0C35D5 /* ViewExtensions.swift */; };
+		6B861F205FCB4C1BAE6CAD60 /* ModuleScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D55953C38DE43BEBA12CC0E /* ModuleScreens.swift */; };
+		ECCC3608482C41119D1475F0 /* LiveAIActivityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE2361A18B7486F932E4CA8 /* LiveAIActivityStore.swift */; };
+		0227253E73244CA5BD6F698B /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9231A53EE7414119BBA1BD87 /* MotionManager.swift */; };
+		5B509C9902B5473F932AD961 /* AIActivityPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35E66655EF74C19B309AD9D /* AIActivityPanel.swift */; };
+		954B18F354EB4979A30F280C /* AIConfidenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C39FCDF986435C845A4A95 /* AIConfidenceView.swift */; };
+		B757D9C155864673A1811847 /* DynamicIslandMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D62B4FEE0F44AA87C997BF /* DynamicIslandMock.swift */; };
+		DA8A9754AB554E76BF225B20 /* FuturisticBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B2AA3A141D4CB3B5CBA197 /* FuturisticBackground.swift */; };
+		914B29A0E9814674A8728ED3 /* GlowEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A0EF3AB6084D39995C6BC1 /* GlowEffects.swift */; };
+		AE5F21B0361B43AE82E7BD6E /* LivingUniverseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1078F982B004A11B62631A4 /* LivingUniverseView.swift */; };
+		61C9E085B402473A9BA7C3EC /* ParticleSystemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6B7809313D4115843DC487 /* ParticleSystemView.swift */; };
+		F8B02ABD8300449CA9FEF4AA /* ReasoningFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A30A5CE60324F8FA5A1A391 /* ReasoningFlowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -227,6 +238,17 @@
 		9563A75EA2C24801A42B7CFF /* MockDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataStore.swift; sourceTree = "<group>"; };
 		96F17C7EAA44416496E8A605 /* HapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedback.swift; sourceTree = "<group>"; };
 		B7331F9E0C6C4D1CBE0C35D5 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
+		2D55953C38DE43BEBA12CC0E /* ModuleScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleScreens.swift; sourceTree = "<group>"; };
+		FFE2361A18B7486F932E4CA8 /* LiveAIActivityStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveAIActivityStore.swift; sourceTree = "<group>"; };
+		9231A53EE7414119BBA1BD87 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
+		B35E66655EF74C19B309AD9D /* AIActivityPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIActivityPanel.swift; sourceTree = "<group>"; };
+		B5C39FCDF986435C845A4A95 /* AIConfidenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIConfidenceView.swift; sourceTree = "<group>"; };
+		B6D62B4FEE0F44AA87C997BF /* DynamicIslandMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicIslandMock.swift; sourceTree = "<group>"; };
+		B1B2AA3A141D4CB3B5CBA197 /* FuturisticBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuturisticBackground.swift; sourceTree = "<group>"; };
+		69A0EF3AB6084D39995C6BC1 /* GlowEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlowEffects.swift; sourceTree = "<group>"; };
+		D1078F982B004A11B62631A4 /* LivingUniverseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivingUniverseView.swift; sourceTree = "<group>"; };
+		9B6B7809313D4115843DC487 /* ParticleSystemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleSystemView.swift; sourceTree = "<group>"; };
+		0A30A5CE60324F8FA5A1A391 /* ReasoningFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasoningFlowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1004,6 +1026,17 @@
 				076843262434DFD30052FD64 /* HTTPHeader.swift in Sources */,
 				076843292434E03B0052FD64 /* SessionManager.swift in Sources */,
 				07A64A002417E137003C6753 /* HomeView.swift in Sources */,
+				F8B02ABD8300449CA9FEF4AA /* ReasoningFlowView.swift in Sources */,
+				61C9E085B402473A9BA7C3EC /* ParticleSystemView.swift in Sources */,
+				AE5F21B0361B43AE82E7BD6E /* LivingUniverseView.swift in Sources */,
+				914B29A0E9814674A8728ED3 /* GlowEffects.swift in Sources */,
+				DA8A9754AB554E76BF225B20 /* FuturisticBackground.swift in Sources */,
+				B757D9C155864673A1811847 /* DynamicIslandMock.swift in Sources */,
+				954B18F354EB4979A30F280C /* AIConfidenceView.swift in Sources */,
+				5B509C9902B5473F932AD961 /* AIActivityPanel.swift in Sources */,
+				0227253E73244CA5BD6F698B /* MotionManager.swift in Sources */,
+				ECCC3608482C41119D1475F0 /* LiveAIActivityStore.swift in Sources */,
+				6B861F205FCB4C1BAE6CAD60 /* ModuleScreens.swift in Sources */,
 				EC66549006324B78AD525ECA /* ViewExtensions.swift in Sources */,
 				A3DA7581C0E44EBA94205D3E /* HapticFeedback.swift in Sources */,
 				8E02F1EB0951495FBE583CEE /* MockDataStore.swift in Sources */,

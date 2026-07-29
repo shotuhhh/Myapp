@@ -173,3 +173,124 @@ enum ContentState: Equatable {
     case error(String)
     case success(String)
 }
+
+struct AIDNATrait: Identifiable, Hashable {
+    let id: String
+    let name: String
+    let value: Double
+    let trend: Double
+    let lastUpdated: Date
+    let source: String
+}
+
+struct KnowledgeLink: Identifiable, Hashable {
+    let id: String
+    let from: String
+    let to: String
+    let strength: Double
+    let discovery: String
+}
+
+struct FutureScenario: Identifiable, Hashable {
+    let id: String
+    let name: String
+    let probability: Double
+    let risk: String
+    let outcome: String
+    let recommendation: String
+}
+
+struct DecisionOption: Identifiable, Hashable {
+    let id: String
+    let title: String
+    let score: Double
+    let pros: [String]
+    let cons: [String]
+    let confidence: Double
+}
+
+struct AgentItem: Identifiable, Hashable {
+    let id: String
+    let name: String
+    let role: String
+    let status: String
+    let taskProgress: Double
+    let icon: String
+}
+
+struct EvolutionMetric: Identifiable, Hashable {
+    let id: String
+    let area: String
+    let before: Double
+    let after: Double
+    let change: String
+}
+
+struct PersonalityDimension: Identifiable, Hashable {
+    let id: String
+    let name: String
+    let score: Double
+    let description: String
+}
+
+struct MemoryConnection: Identifiable, Hashable {
+    let fromId: String
+    let toId: String
+    let strength: Double
+    var id: String { "\(fromId)-\(toId)" }
+}
+
+struct ExtendedMemoryItem: Identifiable, Hashable {
+    let id: String
+    let title: String
+    let summary: String
+    let category: String
+    let date: Date
+    let importance: Int
+    let tags: [String]
+    let emotionalImpact: Double
+    let goalImpact: Double
+    let futureImpact: Double
+    let connections: [String]
+    let x: CGFloat
+    let y: CGFloat
+}
+
+struct TrustMetric: Identifiable, Hashable {
+    let id: String
+    let category: String
+    let score: Double
+    let factors: [String]
+}
+
+struct CuriosityProbe: Identifiable, Hashable {
+    let id: String
+    let question: String
+    let relevance: Double
+    let status: String
+}
+
+struct GoalEvolutionEntry: Identifiable, Hashable {
+    let id: String
+    let goalTitle: String
+    let previousState: String
+    let currentState: String
+    let aiAdjustment: String
+    let date: Date
+}
+
+struct IntegrationItem: Identifiable, Hashable {
+    let id: String
+    let name: String
+    let icon: String
+    let connected: Bool
+    let lastSync: Date?
+}
+
+struct SecurityItem: Identifiable, Hashable {
+    let id: String
+    let title: String
+    let status: String
+    let detail: String
+    let icon: String
+}

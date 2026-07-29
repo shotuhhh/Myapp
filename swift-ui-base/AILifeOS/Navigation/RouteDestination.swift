@@ -11,14 +11,14 @@ struct RouteDestination: View {
     var body: some View {
         switch route {
         case .home: HomeScreen()
-        case .aiChat: AIChatScreen()
+        case .aiChat, .assistant: AIChatScreen()
         case .voiceChat: VoiceChatScreen()
         case .memory: MemoryScreen()
-        case .lifeMap: LifeMapScreen()
+        case .lifeMap, .worldModel: LifeMapScreen()
         case .goals: GoalsScreen()
         case .projects: ProjectsScreen()
         case .habits: HabitsScreen()
-        case .calendar: CalendarScreen()
+        case .calendar, .planning: PlanningScreen()
         case .insights: InsightsScreen()
         case .predictions: PredictionsScreen()
         case .analytics: AnalyticsScreen()
@@ -32,13 +32,29 @@ struct RouteDestination: View {
         case .subscription: SubscriptionScreen()
         case .about: AboutScreen()
         case .privacy: PrivacyScreen()
+        case .aiDNA: AIDNAScreen()
+        case .futureSimulation: FutureSimulationScreen()
+        case .decisionEngine: DecisionEngineScreen()
+        case .curiosityEngine: CuriosityEngineScreen()
+        case .goalEvolution: GoalEvolutionScreen()
+        case .multiAgentEngine: MultiAgentEngineScreen()
+        case .knowledgeFusion: KnowledgeFusionScreen()
+        case .selfEvolution: SelfEvolutionScreen()
+        case .trustEngine: TrustEngineScreen()
+        case .lifeOSOrchestrator: LifeOSOrchestratorScreen()
+        case .personality: PersonalityScreen()
+        case .learning: LearningScreen()
+        case .adaptation: AdaptationScreen()
+        case .hiddenRelations: HiddenRelationsScreen()
+        case .integrations: IntegrationsScreen()
+        case .security: SecurityScreen()
         }
     }
 }
 
 struct ScreenContainer<Content: View>: View {
     let title: String
-  var showBack: Bool = true
+    var showBack: Bool = true
     let content: Content
     
     @EnvironmentObject var appState: AppState
@@ -53,7 +69,7 @@ struct ScreenContainer<Content: View>: View {
     var body: some View {
         let theme = colorScheme == .dark ? ThemeColors.dark : ThemeColors.light
         ZStack {
-            theme.background.ignoresSafeArea()
+            FuturisticBackground()
             VStack(spacing: 0) {
                 if showBack {
                     HStack {
@@ -62,8 +78,7 @@ struct ScreenContainer<Content: View>: View {
                                 .font(.system(size: 17, weight: .semibold))
                                 .foregroundColor(theme.primaryText)
                                 .frame(width: 36, height: 36)
-                                .background(theme.cardBackground)
-                                .clipShape(Circle())
+                                .glassSurface(cornerRadius: 18)
                         }
                         Spacer()
                     }

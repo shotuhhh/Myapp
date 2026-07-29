@@ -19,15 +19,7 @@ struct GlassCard<Content: View>: View {
     var body: some View {
         content
             .padding(padding)
-            .background(
-                RoundedRectangle(cornerRadius: AppTheme.cardRadius, style: .continuous)
-                    .fill(theme.cardBackground)
-                    .shadow(color: Color.black.opacity(colorScheme == .dark ? 0.3 : 0.06), radius: 12, x: 0, y: 4)
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: AppTheme.cardRadius, style: .continuous)
-                    .stroke(theme.border, lineWidth: 0.5)
-            )
+            .glassSurface()
     }
     
     private var theme: ThemeColors {

@@ -82,11 +82,10 @@ struct ThemedBackground: ViewModifier {
     @Environment(\.colorScheme) private var colorScheme
     
     func body(content: Content) -> some View {
-        content
-            .background(
-                (colorScheme == .dark ? ThemeColors.dark : ThemeColors.light).background
-                    .ignoresSafeArea()
-            )
+        ZStack {
+            FuturisticBackground()
+            content
+        }
     }
 }
 
