@@ -143,7 +143,8 @@ struct OnboardingScreen: View {
                         ))
 
                     Text(current.subtitle)
-                        .font(.system(size: 16, lineSpacing: 4))
+                        .font(.system(size: 16))
+                        .lineSpacing(4)
                         .foregroundColor(theme.secondaryText)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 28)
