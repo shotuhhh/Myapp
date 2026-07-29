@@ -11,18 +11,15 @@ struct SettingsScreen: View {
     @AppStorage("ailifeos_dark_mode") private var darkModePreference = "system"
     @AppStorage("ailifeos_notifications") private var notificationsEnabled = true
     @AppStorage("ailifeos_haptics") private var hapticsEnabled = true
-    
+
     var body: some View {
         let theme = colorScheme == .dark ? ThemeColors.dark : ThemeColors.light
-        
+
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 16) {
-                Text("Settings")
-                    .font(.system(size: 34, weight: .bold, design: .rounded))
-                    .foregroundColor(theme.primaryText)
-                    .padding(.top, 8)
-                
-                settingsGroup(title: "Appearance", theme: theme) {
+                ModuleHeader(title: "Settings", subtitle: "Preferences & account", icon: "gearshape.fill")
+
+                settingsGroup(title: "Appearance") {
                     settingRow("Dark Mode", icon: "moon.fill", theme: theme) {
                         Picker("", selection: $darkModePreference) {
                             Text("System").tag("system")
@@ -30,39 +27,52 @@ struct SettingsScreen: View {
                             Text("Dark").tag("dark")
                         }
                         .pickerStyle(MenuPickerStyle())
+                        .accentColor(theme.accent)
                     }
                 }
-                
-                settingsGroup(title: "Preferences", theme: theme) {
+
+                settingsGroup(title: "Preferences") {
                     Toggle(isOn: $notificationsEnabled) {
                         Label("Notifications", systemImage: "bell.fill")
+                            .foregroundColor(theme.primaryText)
                     }
+                    .tint(theme.accent)
                     Toggle(isOn: $hapticsEnabled) {
                         Label("Haptic Feedback", systemImage: "hand.tap.fill")
+                            .foregroundColor(theme.primaryText)
                     }
+                    .tint(theme.accent)
                 }
-                
-                settingsGroup(title: "Account", theme: theme) {
+
+                settingsGroup(title: "AI & Privacy") {
+                    navButton("Security & Privacy", icon: "lock.shield.fill", route: .security, theme: theme)
+                    navButton("Integrations", icon: "puzzlepiece.extension.fill", route: .integrations, theme: theme)
+                    navButton("AI DNA", icon: "dna", route: .aiDNA, theme: theme)
+                }
+
+                settingsGroup(title: "Account") {
                     navButton("Subscription", icon: "crown.fill", route: .subscription, theme: theme)
-                    navButton("Privacy", icon: "hand.raised.fill", route: .privacy, theme: theme)
-                    navButton("About", icon: "info.circle.fill", route: .about, theme: theme)
+                    navButton("Privacy Policy", icon: "hand.raised.fill", route: .privacy, theme: theme)
+                    navButton("About AI Life OS", icon: "info.circle.fill", route: .about, theme: theme)
                 }
-                
+
                 PremiumButton("Sign Out", icon: "rectangle.portrait.and.arrow.right", style: .ghost, action: {
                     appState.logout()
                 })
             }
             .padding(AppTheme.padding)
         }
-        .themedBackground()
+        .futuristicBackground()
         .navigationBarHidden(true)
     }
-    
-    private func settingsGroup<Content: View>(title: String, theme: ThemeColors, @ViewBuilder content: () -> Content) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(title)
-                .font(.system(size: 13, weight: .semibold))
-                .foregroundColor(theme.secondaryText)
+
+    private func settingsGroup<Content: View>(title: String, @ViewBuilder content: () -> Content) -> some View {
+        let theme = colorScheme == .dark ? ThemeColors.dark : ThemeColors.light
+        return VStack(alignment: .leading, spacing: 8) {
+            Text(title.uppercased())
+                .font(.system(size: 11, weight: .semibold))
+                .foregroundColor(theme.tertiaryText)
+                .tracking(1)
             GlassCard {
                 VStack(spacing: 12) {
                     content()
@@ -70,7 +80,7 @@ struct SettingsScreen: View {
             }
         }
     }
-    
+
     private func settingRow<Trailing: View>(_ title: String, icon: String, theme: ThemeColors, @ViewBuilder trailing: () -> Trailing) -> some View {
         HStack {
             Image(systemName: icon)
@@ -81,7 +91,7 @@ struct SettingsScreen: View {
             trailing()
         }
     }
-    
+
     private func navButton(_ title: String, icon: String, route: AppRoute, theme: ThemeColors) -> some View {
         Button(action: { appState.navigate(to: route) }) {
             NavigationRow(icon: icon, title: title)

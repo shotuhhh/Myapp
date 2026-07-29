@@ -45,7 +45,7 @@ struct PrivacyScreen: View {
             }
             .padding(AppTheme.padding)
         }
-        .themedBackground()
+        .futuristicBackground()
         .navigationBarHidden(true)
     }
 }

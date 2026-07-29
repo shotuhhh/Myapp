@@ -10,29 +10,37 @@ struct NotificationsScreen: View {
     @EnvironmentObject var appState: AppState
     @Environment(\.colorScheme) private var colorScheme
     @State private var notifications: [NotificationItem] = MockDataStore.shared.notifications
-    
+
+    private var unreadCount: Int { notifications.filter { !$0.isRead }.count }
+
     var body: some View {
         let theme = colorScheme == .dark ? ThemeColors.dark : ThemeColors.light
-        
+
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 16) {
                 HStack {
-                    Text("Notifications")
-                        .font(.system(size: 34, weight: .bold, design: .rounded))
-                        .foregroundColor(theme.primaryText)
+                    ModuleHeader(
+                        title: "Notifications",
+                        subtitle: "\(unreadCount) unread",
+                        icon: "bell.fill"
+                    )
                     Spacer()
-                    Button("Mark all read") {
-                        notifications = notifications.map { n in
-                            NotificationItem(id: n.id, title: n.title, message: n.message, date: n.date, type: n.type, isRead: true)
+                    if unreadCount > 0 {
+                        Button("Mark all read") {
+                            withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                                notifications = notifications.map {
+                                    NotificationItem(id: $0.id, title: $0.title, message: $0.message,
+                                                     date: $0.date, type: $0.type, isRead: true)
+                                }
+                            }
+                            appState.showToast("All marked read")
                         }
-                        appState.showToast("All marked read")
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundColor(theme.accent)
                     }
-                    .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(theme.accent)
                 }
-                .padding(.top, 8)
-                
-                if notifications.allSatisfy({ $0.isRead }) && notifications.isEmpty {
+
+                if notifications.isEmpty {
                     EmptyStateView(icon: "bell.slash", title: "All clear", message: "No notifications right now.")
                 } else {
                     ForEach(notifications.indices, id: \.self) { index in
@@ -41,10 +49,12 @@ struct NotificationsScreen: View {
                             GlassCard(padding: 12) {
                                 HStack(alignment: .top, spacing: 12) {
                                     Image(systemName: iconFor(n.type))
-                                        .foregroundColor(theme.accent)
-                                        .frame(width: 36, height: 36)
-                                        .background(theme.accent.opacity(0.12))
+                                        .font(.system(size: 15))
+                                        .foregroundColor(colorFor(n.type, theme: theme))
+                                        .frame(width: 38, height: 38)
+                                        .background(colorFor(n.type, theme: theme).opacity(0.12))
                                         .clipShape(Circle())
+                                        .glow(colorFor(n.type, theme: theme), radius: 4, intensity: 0.3)
                                     VStack(alignment: .leading, spacing: 4) {
                                         Text(n.title)
                                             .font(.system(size: 15, weight: n.isRead ? .medium : .semibold))
@@ -53,39 +63,59 @@ struct NotificationsScreen: View {
                                             .font(.system(size: 13))
                                             .foregroundColor(theme.secondaryText)
                                             .lineLimit(2)
+                                        Text(n.date, style: .relative)
+                                            .font(.system(size: 11))
+                                            .foregroundColor(theme.tertiaryText)
                                     }
                                     Spacer()
                                     if !n.isRead {
                                         Circle()
                                             .fill(theme.accent)
                                             .frame(width: 8, height: 8)
+                                            .glow(theme.accent, radius: 4, intensity: 0.6)
                                     }
                                 }
                             }
                         }
                         .buttonStyle(PressableButtonStyle())
+                        .opacity(n.isRead ? 0.7 : 1.0)
                     }
                 }
             }
             .padding(AppTheme.padding)
         }
-        .themedBackground()
+        .futuristicBackground()
         .navigationBarHidden(true)
     }
-    
+
     private func iconFor(_ type: NotificationItem.NotificationType) -> String {
         switch type {
-        case .reminder: return "bell.fill"
-        case .insight: return "lightbulb.fill"
+        case .reminder:    return "bell.fill"
+        case .insight:     return "lightbulb.fill"
         case .achievement: return "trophy.fill"
-        case .system: return "gear"
-        case .social: return "person.2.fill"
+        case .system:      return "gear"
+        case .social:      return "person.2.fill"
         }
     }
-    
+
+    private func colorFor(_ type: NotificationItem.NotificationType, theme: ThemeColors) -> Color {
+        switch type {
+        case .reminder:    return theme.accent
+        case .insight:     return theme.warning
+        case .achievement: return theme.success
+        case .system:      return theme.secondaryText
+        case .social:      return .purple
+        }
+    }
+
     private func markRead(at index: Int) {
         let n = notifications[index]
-        notifications[index] = NotificationItem(id: n.id, title: n.title, message: n.message, date: n.date, type: n.type, isRead: true)
+        withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+            notifications[index] = NotificationItem(
+                id: n.id, title: n.title, message: n.message,
+                date: n.date, type: n.type, isRead: true
+            )
+        }
         HapticFeedback.light()
     }
 }

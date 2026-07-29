@@ -16,13 +16,8 @@ struct SubscriptionScreen: View {
         
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 20) {
-                Text("Subscription")
-                    .font(.system(size: 34, weight: .bold, design: .rounded))
-                    .foregroundColor(theme.primaryText)
+                ModuleHeader(title: "Subscription", subtitle: "Unlock the full intelligence engine", icon: "crown.fill")
                     .padding(.top, 8)
-                
-                Text("Unlock the full power of AI Life OS")
-                    .foregroundColor(theme.secondaryText)
                 
                 ForEach(data.subscriptionPlans) { plan in
                     Button(action: { selectedPlanId = plan.id; HapticFeedback.selection() }) {
@@ -67,9 +62,10 @@ struct SubscriptionScreen: View {
                             }
                         }
                         .overlay(
-                            RoundedRectangle(cornerRadius: AppTheme.cardRadius)
+                            RoundedRectangle(cornerRadius: AppTheme.cardRadius, style: .continuous)
                                 .stroke(selectedPlanId == plan.id ? theme.accent : Color.clear, lineWidth: 2)
                         )
+                        .shadow(color: selectedPlanId == plan.id ? theme.accent.opacity(0.3) : .clear, radius: 8)
                     }
                     .buttonStyle(PressableButtonStyle())
                 }
@@ -83,7 +79,7 @@ struct SubscriptionScreen: View {
             }
             .padding(AppTheme.padding)
         }
-        .themedBackground()
+        .futuristicBackground()
         .navigationBarHidden(true)
     }
 }

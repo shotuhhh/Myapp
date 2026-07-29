@@ -14,17 +14,20 @@ struct AboutScreen: View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 24) {
                 ZStack {
+                    BreathingGlow(color: theme.accent, size: 150)
                     Circle()
                         .fill(LinearGradient(colors: [theme.gradientStart, theme.gradientEnd], startPoint: .topLeading, endPoint: .bottomTrailing))
                         .frame(width: 100, height: 100)
+                        .glow(theme.accent, radius: 14, intensity: 0.5)
                     Image(systemName: "sparkles")
                         .font(.system(size: 44, weight: .semibold))
                         .foregroundColor(.white)
                 }
-                .padding(.top, 24)
-                
+                .frame(height: 170)
+                .padding(.top, 8)
+
                 Text("AI Life OS")
-                    .font(.system(size: 28, weight: .bold, design: .rounded))
+                    .font(.system(size: 30, weight: .bold, design: .rounded))
                     .foregroundColor(theme.primaryText)
                 Text("Version 1.0.0 (Build 1)")
                     .font(.system(size: 14))
@@ -54,7 +57,7 @@ struct AboutScreen: View {
             }
             .padding(AppTheme.padding)
         }
-        .themedBackground()
+        .futuristicBackground()
         .navigationBarHidden(true)
     }
     
