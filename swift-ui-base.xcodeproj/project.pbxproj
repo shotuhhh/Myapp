@@ -643,6 +643,14 @@
 				AB3AC6BEA7A9439F91364D6D /* PremiumButton.swift */,
 				D8E10ED1FF0B4899A0B55E51 /* SkeletonView.swift */,
 				CB506FC1E8A6426896BA8BCD /* StatCard.swift */,
+				B35E66655EF74C19B309AD9D /* AIActivityPanel.swift */,
+				B5C39FCDF986435C845A4A95 /* AIConfidenceView.swift */,
+				B6D62B4FEE0F44AA87C997BF /* DynamicIslandMock.swift */,
+				B1B2AA3A141D4CB3B5CBA197 /* FuturisticBackground.swift */,
+				69A0EF3AB6084D39995C6BC1 /* GlowEffects.swift */,
+				D1078F982B004A11B62631A4 /* LivingUniverseView.swift */,
+				9B6B7809313D4115843DC487 /* ParticleSystemView.swift */,
+				0A30A5CE60324F8FA5A1A391 /* ReasoningFlowView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -693,6 +701,7 @@
 				7F33D69A66B14A2E87B4A1B9 /* SettingsScreen.swift */,
 				9142D9620DB641318D3AE36F /* SubscriptionScreen.swift */,
 				A0E66E6D0A48499BA99F5389 /* VoiceChatScreen.swift */,
+				2D55953C38DE43BEBA12CC0E /* ModuleScreens.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -724,9 +733,27 @@
 				BE79AAA463164E8E94528F54 /* Navigation */,
 				D095B7BC54464AEAB58C23C0 /* Screens */,
 				6B833F7FCC2C41ADB07CCC1F /* Theme */,
+				A1MGR000000000000000001 /* Managers */,
+				A1SVC000000000000000001 /* Services */,
 				B851F43ADDA24CB18A69BD8E /* Utilities */,
 			);
 			path = AILifeOS;
+			sourceTree = "<group>";
+		};
+		A1MGR000000000000000001 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				9231A53EE7414119BBA1BD87 /* MotionManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		A1SVC000000000000000001 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FFE2361A18B7486F932E4CA8 /* LiveAIActivityStore.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
